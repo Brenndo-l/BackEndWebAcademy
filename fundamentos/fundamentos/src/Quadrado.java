@@ -9,4 +9,8 @@ public class Quadrado implements IQuadrilatero {
     public double calcularArea(){
         return this.lado * this.lado;
     }
+
+    public double calcularArea(double diagonal){
+        return diagonal * diagonal;
+    }
 }
