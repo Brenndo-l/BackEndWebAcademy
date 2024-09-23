@@ -20,8 +20,8 @@ public class Teste {
         e1.setNome("Veterinario");
         p1.setEspecialidade(e1);
         System.out.println("Nome: "+ p1.getNome());
-        System.out.println("Especialidade: "+ p1.getEspecialidade());
-        System.out.println("Unidade"+ p1.getUnidade());
+        System.out.println("Especialidade: "+ p1.getEspecialidade().getNome());
+        System.out.println("Unidade "+ p1.getUnidade().getNome());
     }
     
 }
