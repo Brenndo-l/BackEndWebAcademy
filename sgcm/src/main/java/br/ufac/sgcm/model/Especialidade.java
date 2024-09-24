@@ -1,20 +1,22 @@
-package br.ufac.sgcm.model;
+package main.java.br.ufac.sgcm.model;
 
 public class Especialidade {
     private Long id;
     private String nome;
 
-    public Long getId(){
+    public Long getId() {
         return this.id;
     }
-    public void setId(Long id){
+
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public String getNome(){
+    public String getNome() {
         return this.nome;
     }
-    public void setNome(String nome){
+
+    public void setNome(String nome) {
         this.nome = nome;
     }
 }

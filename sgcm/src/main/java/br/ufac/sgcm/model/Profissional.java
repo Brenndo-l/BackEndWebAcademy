@@ -1,4 +1,4 @@
-package br.ufac.sgcm.model;
+package main.java.br.ufac.sgcm.model;
 
 public class Profissional {
     private Long id;
@@ -9,21 +9,24 @@ public class Profissional {
     private Unidade unidade;
     private Especialidade especialidade;
 
-    public Unidade getUnidade(){
+    public Unidade getUnidade() {
         return this.unidade;
     }
-    public Especialidade getEspecialidade(){
-        return this.especialidade;
-    }
-    public void setUnidade(Unidade unidade){
+
+    public void setUnidade(Unidade unidade) {
         this.unidade = unidade;
     }
-    public void setEspecialidade(Especialidade especialiade){
-        this.especialidade = especialiade;
+
+    public Especialidade getEspecialidade() {
+        return this.especialidade;
+    }
+
+    public void setEspecialidade(Especialidade especialidade) {
+        this.especialidade = especialidade;
     }
 
     public Long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(Long id) {
@@ -31,7 +34,7 @@ public class Profissional {
     }
 
     public String getNome() {
-        return this.nome;
+        return nome;
     }
 
     public void setNome(String nome) {
@@ -39,7 +42,7 @@ public class Profissional {
     }
 
     public String getRegistro() {
-        return this.registro;
+        return registro;
     }
 
     public void setRegistro(String registro) {
@@ -47,7 +50,7 @@ public class Profissional {
     }
 
     public String getTelefone() {
-        return this.telefone;
+        return telefone;
     }
 
     public void setTelefone(String telefone) {
@@ -55,12 +58,11 @@ public class Profissional {
     }
 
     public String getEmail() {
-        return this.email;
+        return email;
     }
 
     public void setEmail(String email) {
         this.email = email;
     }
 
-    
 }

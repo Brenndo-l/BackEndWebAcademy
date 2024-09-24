@@ -1,21 +1,11 @@
-public class Aluno extends Pessoa {
+public class Aluno extends Pessoa {// Aluno é um objeto do tipo Pessoa
     private int matricula;
 
     public int getMatricula() {
-        return matricula;
+        return this.matricula;
     }
 
-    public void setMatricula(int matricula) {
-        this.matricula = matricula;
+    public void setMatricula(int m) {
+        this.matricula = m;
     }
-
-    @Override
-    public String toString() {
-        return "Aluno [matricula=" + matricula + ", getMatricula()=" + getMatricula() + ", getNome()=" + getNome()
-                + "]";
-    }
-    
-    
 }
-    
-

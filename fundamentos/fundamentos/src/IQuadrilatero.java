@@ -1,3 +1,3 @@
-public interface IQuadrilatero{
+public interface IQuadrilatero {
     double calcularArea();
 }
