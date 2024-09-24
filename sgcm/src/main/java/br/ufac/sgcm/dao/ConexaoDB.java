@@ -1,4 +1,4 @@
-package main.java.br.ufac.sgcm.dao;
+package br.ufac.sgcm.dao;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -6,7 +6,7 @@ import java.sql.DriverManager;
 public class ConexaoDB {
     private String usuario = "root";
     private String senha = "root";
-    private String url = "jdbc:msyql://localhost/sgcm";
+    private String url = "jdbc:mysql://localhost/sgcm";
     Connection con;
 
     public Connection getConexao() {
