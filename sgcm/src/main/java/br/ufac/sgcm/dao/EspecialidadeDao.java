@@ -9,10 +9,10 @@ import java.util.List;
 
 import br.ufac.sgcm.model.Especialidade;
 
-public class EspecialidadeDao {
-    Connection conexao;
-    PreparedStatement ps;
-    ResultSet rs;
+public class EspecialidadeDao implements IDao<Especialidade> {
+    private Connection conexao;
+    private PreparedStatement ps;
+    private ResultSet rs;
 
     // Construtor
     public EspecialidadeDao() {
@@ -20,6 +20,23 @@ public class EspecialidadeDao {
     }
 
     // Métodos de acesso aos dados das Especialidades (MySQL)
+    //Get para retornar uma unica especialidade
+    public Especialidade get(Long id){
+        Especialidade esp = new Especialidade();
+        String sql = "SELECT * FROM especialidade WHERE id=?";
+        try {
+            ps = conexao.prepareStatement(sql);
+            ps.setLong(1, id);
+            rs = ps.executeQuery();
+            if(rs.next()){
+                esp.setId(rs.getLong("id"));
+                esp.setNome(rs.getString("nome"));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return esp;
+    }
     // Listar todas as especialidades
     public List<Especialidade> get() {
         List<Especialidade> registros = new ArrayList<>();

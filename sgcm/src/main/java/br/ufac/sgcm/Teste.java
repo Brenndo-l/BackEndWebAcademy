@@ -3,6 +3,7 @@ package br.ufac.sgcm;
 import java.util.List;
 
 import br.ufac.sgcm.dao.EspecialidadeDao;
+import br.ufac.sgcm.dao.ProfissionalDao;
 import br.ufac.sgcm.model.Especialidade;
 import br.ufac.sgcm.model.Profissional;
 import br.ufac.sgcm.model.Unidade;
@@ -60,6 +61,13 @@ public class Teste {
         for (Especialidade e : lista) {
             // System.out.println(e.getId() + ": " + e.getNome());
             System.out.println(e);
+        }
+
+        //Listar todos os profissionais
+        ProfissionalDao pDao = new ProfissionalDao();
+        List<Profissional> pLista = pDao.get();
+        for (Profissional p : pLista){
+            System.out.println(p.getNome()+":"+p.getEspecialidade()+":"+p.getUnidade().getNome());
         }
     }
 }
