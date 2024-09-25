@@ -7,7 +7,7 @@ public class ConexaoDB {
     private String usuario = "root";
     private String senha = "root";
     private String url = "jdbc:mysql://localhost/sgcm";
-    Connection con;
+    private Connection con;
 
     public Connection getConexao() {
         try {
