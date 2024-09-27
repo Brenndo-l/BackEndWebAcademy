@@ -1,12 +1,16 @@
 package br.ufac.sgcm.controller;
 
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import br.ufac.sgcm.dao.EspecialidadeDao;
 import br.ufac.sgcm.model.Especialidade;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 public class EspecialidadeController implements IController<Especialidade> {
-    //Todos os métodos da camada DAO dever estar disponiveis
+    //Todos os méetodos da camada DAO devem estar disponíveis
     //Métodos das regras de negócio da aplicação
     EspecialidadeDao eDao;
 
@@ -36,17 +40,44 @@ public class EspecialidadeController implements IController<Especialidade> {
 
     @Override
     public int save(Especialidade objeto) {
-        int registrosAfetados = 0;
-        if(objeto.getId() == null){ //Se o objeto id nãoexiste no banco ele insere
-          registrosAfetados = eDao.insert(objeto);
+        if(objeto.getId() ==null) //Se o objeto tem id, atualiza ele, caso contrário, será inserido na base de dados
+            return eDao.insert(objeto);
+        return eDao.update(objeto);
+    }
+    
+    //Métodos do servlet
+    public Especialidade processFormRequest(HttpServletRequest req, HttpServletResponse res){
+        String paramSubmit = req.getParameter("submit");
+        String paramNome = req.getParameter("nome");
+        String paramId = req.getParameter("id");
+        Especialidade registro = new Especialidade();
+        //Se o usuario esta editando?
+        if(paramId != null && paramId.isEmpty()){
+            Long id = Long.parseLong(paramId);
+            registro = get(id);
         }
-        else{ //caso contrario ele atualiza
-          registrosAfetados = eDao.update(objeto);
+        if(paramSubmit != null){ //Se o usuario esta inserido
+            registro.setNome(paramNome);
+            this.save(registro); //chama o save da classe EspecialidadeController
         }
-        return registrosAfetados;
+        try {
+            res.sendRedirect("especialidade.jsp");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return registro;
     }
 
-    
-
-
+    public List<Especialidade> processListRequest(HttpServletRequest req, HttpServletResponse res){
+        List<Especialidade> registros = new ArrayList<>();
+        String paramExcluir = req.getParameter("excluir");
+        if(paramExcluir != null && !paramExcluir.isEmpty()){
+            Long id = Long.parseLong(paramExcluir);
+            Especialidade registro = this.get(id);
+            delete(registro);
+        }
+        registros = this.get();
+        return registros;
+    }
 }

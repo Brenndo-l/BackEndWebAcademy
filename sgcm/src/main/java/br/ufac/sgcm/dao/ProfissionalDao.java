@@ -1,5 +1,7 @@
 package br.ufac.sgcm.dao;
 
+import br.ufac.sgcm.model.Profissional;
+
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -7,28 +9,20 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.ufac.sgcm.model.Profissional;
+public class ProfissionalDao  implements IDao<Profissional>{
 
-public class ProfissionalDao implements IDao<Profissional> {
-    private Connection conexao;
-    private PreparedStatement ps;
-    private ResultSet rs;
-    private EspecialidadeDao eDao = new EspecialidadeDao();
-    private UnidadeDao uDao = new UnidadeDao();
-    
-    //Construtor
+    Connection conexao;
+    PreparedStatement ps;
+    ResultSet rs;
+    private EspecialidadeDao eDao;
+    private UnidadeDao uDao;
+
     public ProfissionalDao(){
         conexao = new ConexaoDB().getConexao();
         eDao = new EspecialidadeDao();
         uDao = new UnidadeDao();
     }
 
-    //Metodos
-    //Listar todos os profissionais
-    //Listar os profissionais de acordo com um termo de busca
-    //Inserir
-    //Atualizar
-    //Deletar
 
     @Override
     public List<Profissional> get() {
@@ -40,43 +34,44 @@ public class ProfissionalDao implements IDao<Profissional> {
             while(rs.next()){
                 Profissional p = new Profissional();
                 p.setId(rs.getLong("id"));
-                p.setNome(rs.getString("nome"));
                 p.setEmail(rs.getString("email"));
-                p.setTelefone(rs.getString("telefone"));
+                p.setNome(rs.getString("nome"));
                 p.setRegistro(rs.getString("registro_conselho"));
-                // Long id = rs.getLong("especialidade_id");
-                // Especialidade esp = eDao.get(id)
-                // p.setEspecialidade(esp);
+                p.setTelefone(rs.getString("telefone"));
+                //rs.getLong retorna o id que é buscado em especialidadeDAO -esp- o nome da especialidade
+                // e setado em p.setEspecialidade
                 p.setEspecialidade(eDao.get(rs.getLong("especialidade_id")));
                 p.setUnidade(uDao.get(rs.getLong("unidade_id")));
                 registros.add(p);
             }
-        } catch (SQLException e) {
+        } catch (SQLException e){
             e.printStackTrace();
         }
         return registros;
-
     }
 
     @Override
     public List<Profissional> get(String termoBusca) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return List.of();
+    }
+
+    @Override
+    public Profissional get(Long id) {
+        return null;
     }
 
     @Override
     public int insert(Profissional objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 0;
     }
 
     @Override
     public int update(Profissional objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 0;
     }
 
     @Override
     public int delete(Profissional objeto) {
-        throw new UnsupportedOperationException("Not supported yet.");
+        return 0;
     }
-
-    
 }
