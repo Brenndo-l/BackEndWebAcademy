@@ -5,32 +5,27 @@ public class Unidade {
     private String nome;
     private String endereco;
 
-    public Unidade(){
-        
-    }
-
-
     public Long getId() {
-        return id;
+        return this.id;
     }
+
     public void setId(Long id) {
         this.id = id;
     }
+
     public String getNome() {
-        return nome;
+        return this.nome;
     }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public String getEndereco() {
-        return endereco;
-    }
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
+        return this.endereco;
     }
 
-    @Override
-    public String toString() {
-        return this.nome;
+    public void setEndereco(String endereco) {
+        this.endereco = endereco;
     }
 }

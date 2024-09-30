@@ -16,7 +16,7 @@
   </servlet-mapping>
 
   <display-name>Especialidade</display-name>
-  <description>Lista EspecialidadecJSON</description>
+  <description>Lista Especialidade JSON</description>
   <servlet>
     <servlet-name>EspecialidadeServlet</servlet-name>
     <servlet-class>br.ufac.sgcm.controller.EspecialidadeServlet</servlet-class>
